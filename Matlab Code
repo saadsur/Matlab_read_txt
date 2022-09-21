@@ -1,6 +1,11 @@
-id = [1,2,3,5,6,9,12,15] %this vector is from the txt sequence 
+id = [1,2,3,5,6,9,12,15] %this vector is from the txt sequence, each file has 100 data points, 
 %here you can make you for loop and change the id(x) variable with loop
-dat = id(1)
-P_data= load('0_subject\' + string(dat)+ {'_1.txt'}); % read comma separated data this is important because my file names are 2_1.txt, 3_1.txt and so on
-plot(P_data)
-%you can create 2D vector to store all values in a vector
+P_data = zeros(8,100);
+for i = 1:size(id)
+    
+    dat = id(i);
+    P_data_read= load('0_subject\' + string(dat)+ {'_1.txt'}); % read comma separated data   
+    P_data(i,:) = P_data_read(1,1:100); %if any file has more than 100 data points then we will truncate here just by limiting it to 100
+    
+end
+
